@@ -31,7 +31,8 @@ resource "random_string" "s3_affix" {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "awsconfig-${random_string.s3_affix.result}"
+  bucket        = "awsconfig-${random_string.s3_affix.result}"
+  force_destroy = true
 }
 
 resource "aws_config_delivery_channel" "foo" {
