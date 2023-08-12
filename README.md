@@ -1,2 +1,3 @@
-# aws-security-hub
-AWS Security Hub Labs
+# AWS Security Hub + Config
+
+AWS Security Hub + Config
