@@ -2,6 +2,8 @@
 
 Using AWS Config rules and getting insights with AWS Security Hub.
 
+<img src=".assets/architecture.png" width=600/>
+
 Create the resources:
 
 ```sh
@@ -21,4 +23,4 @@ On Security Hub, check the security posture:
 
 Security Hub can integrate with several other AWS services:
 
-<img src=".assets/integrations.png" width=600/>
+<img src=".assets/integrations.png" width=500/>
