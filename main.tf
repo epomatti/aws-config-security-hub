@@ -27,6 +27,10 @@ module "ec2-instance" {
   subnet = module.vpc.subnet_pub1
 }
 
+module "s3" {
+  source = "./modules/s3"
+}
+
 module "config" {
   source = "./modules/config"
 
@@ -34,6 +38,7 @@ module "config" {
   depends_on = [
     module.dyndb,
     module.vpc,
-    module.ec2-instance
+    module.ec2-instance,
+    module.s3
   ]
 }
