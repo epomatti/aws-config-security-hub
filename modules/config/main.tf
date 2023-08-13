@@ -71,22 +71,46 @@ resource "aws_iam_role_policy" "p" {
 }
 
 ### Managed Rules ###
-resource "aws_config_organization_managed_rule" "dyndb_pitr_enabled" {
-  name            = "dynamodb-pitr-enabled"
-  rule_identifier = "DYNAMODB_PITR_ENABLED"
+resource "aws_config_config_rule" "dyndb_pitr_enabled" {
+  name = "dynamodb-pitr-enabled"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "DYNAMODB_PITR_ENABLED"
+  }
+
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
-resource "aws_config_organization_managed_rule" "dynamodb_table_encryption_enabled" {
-  name            = "dynamodb-table-encryption-enabled"
-  rule_identifier = "DYNAMODB_TABLE_ENCRYPTION_ENABLED"
+resource "aws_config_config_rule" "dynamodb_table_encryption_enabled" {
+  name = "dynamodb-table-encryption-enabled"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "DYNAMODB_TABLE_ENCRYPTION_ENABLED"
+  }
+
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
-resource "aws_config_organization_managed_rule" "dynamodb_table_encrypted_kms" {
-  name            = "dynamodb-table-encrypted-kms"
-  rule_identifier = "DYNAMODB_TABLE_ENCRYPTED_KMS"
+resource "aws_config_config_rule" "dynamodb_table_encrypted_kms" {
+  name = "dynamodb-table-encrypted-kms"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "DYNAMODB_TABLE_ENCRYPTED_KMS"
+  }
+
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
-resource "aws_config_organization_managed_rule" "ec2_instance_no_public_ip" {
-  name            = "ec2-instance-no-public-ip"
-  rule_identifier = "EC2_INSTANCE_NO_PUBLIC_IP"
+resource "aws_config_config_rule" "ec2_instance_no_public_ip" {
+  name = "ec2-instance-no-public-ip"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "EC2_INSTANCE_NO_PUBLIC_IP"
+  }
+
+  depends_on = [aws_config_configuration_recorder.foo]
 }

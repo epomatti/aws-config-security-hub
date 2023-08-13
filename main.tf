@@ -11,10 +11,6 @@ provider "aws" {
   region = var.region
 }
 
-module "config" {
-  source = "./modules/config"
-}
-
 module "dyndb" {
   source = "./modules/dyndb"
 }
@@ -29,4 +25,15 @@ module "ec2-instance" {
   vpc_id = module.vpc.vpc_id
   az     = module.vpc.az1
   subnet = module.vpc.subnet_pub1
+}
+
+module "config" {
+  source = "./modules/config"
+
+  # Waits on all modules to get the configuration on creation
+  depends_on = [
+    module.dyndb,
+    module.vpc,
+    module.ec2-instance
+  ]
 }
