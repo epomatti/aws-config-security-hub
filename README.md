@@ -1,18 +1,24 @@
 # AWS Security Hub + AWS Config
 
-Using AWS Config to trigger AWS Security Hub actions.
+Using AWS Config rules and getting insights with AWS Security Hub.
 
+Create the resources:
 
-Advisor
+```sh
+terraform init
+terraform apply -auto-approve
+```
 
-Custom
+👉 Using the Console, enable Security Hub manually.
 
+Give it some time for scanning and check AWS Config:
 
-The following managed rules are enabled by default:
+<img src=".assets/config.png" />
 
-managed rules
+On Security Hub, check the security posture:
 
-packs
+<img src=".assets/sechub.png" />
 
-https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html
+Security Hub can integrate with several other AWS services:
 
+<img src=".assets/integrations.png" />
