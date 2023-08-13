@@ -15,6 +15,10 @@ module "config" {
   source = "./modules/config"
 }
 
+module "dyndb" {
+  source = "./modules/dyndb"
+}
+
 module "vpc" {
   source = "./modules/vpc"
   region = var.region
