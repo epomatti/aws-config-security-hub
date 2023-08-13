@@ -21,4 +21,4 @@ On Security Hub, check the security posture:
 
 Security Hub can integrate with several other AWS services:
 
-<img src=".assets/integrations.png" />
+<img src=".assets/integrations.png" width=600/>
