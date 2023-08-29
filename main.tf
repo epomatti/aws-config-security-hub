@@ -1,8 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "5.12.0"
+      source = "hashicorp/aws"
     }
   }
 }
@@ -29,6 +28,10 @@ module "ec2-instance" {
 
 module "s3" {
   source = "./modules/s3"
+}
+
+module "iam" {
+  source = "./modules/iam"
 }
 
 module "config" {

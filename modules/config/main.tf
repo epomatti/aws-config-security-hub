@@ -33,6 +33,10 @@ resource "aws_config_delivery_channel" "foo" {
 resource "aws_config_configuration_recorder" "foo" {
   name     = "default-recorder"
   role_arn = aws_iam_role.r.arn
+  recording_group {
+    all_supported                 = true
+    include_global_resource_types = true
+  }
 }
 
 data "aws_iam_policy_document" "assume_role" {
