@@ -39,5 +39,13 @@ As well as with other resources, it is possible to track the resource timeline::
 
 <img src=".assets/iam-timeline.png" />
 
+## CloudTrail
+
+> ℹ️ For a multi-region trail, must be in the home region of the trail.
+
+> ℹ️ For an organization trail, must be in the master account of the organization.
+
+
+
 [1]: https://aws.amazon.com/blogs/security/how-to-record-and-govern-your-iam-resource-configurations-using-aws-config/
 [2]: https://aws.amazon.com/about-aws/whats-new/2015/12/now-record-changes-to-iam-users-groups-roles-and-policies-and-write-config-rules-to-check-their-state/

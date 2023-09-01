@@ -34,6 +34,10 @@ module "iam" {
   source = "./modules/iam"
 }
 
+module "cloudtrail" {
+  source = "./modules/cloudtrail"
+}
+
 module "config" {
   source = "./modules/config"
 
@@ -42,6 +46,7 @@ module "config" {
     module.dyndb,
     module.vpc,
     module.ec2-instance,
-    module.s3
+    module.s3,
+    module.cloudtrail
   ]
 }
