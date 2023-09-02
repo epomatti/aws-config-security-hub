@@ -38,8 +38,13 @@ module "cloudtrail" {
   source = "./modules/cloudtrail"
 }
 
+module "lambda" {
+  source = "./modules/lambda"
+}
+
 module "config" {
   source = "./modules/config"
+  lambda_arn = module.lambda.arn
 
   # Waits on all modules to get the configuration on creation
   depends_on = [

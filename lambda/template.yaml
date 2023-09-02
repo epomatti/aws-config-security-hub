@@ -10,18 +10,11 @@ Globals:
 Resources:
   CloudTrailFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: makefile
     Properties:
       CodeUri: .
       Handler: main
       Runtime: go1.x
       Architectures:
         - x86_64
-      # Events:
-      #   CatchAll:
-      #     Type: Api
-      #     Properties:
-      #       Path: /hello
-      #       Method: GET
-      # Environment:
-      #   Variables:
-      #     PARAM1: VALUE

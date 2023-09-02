@@ -129,3 +129,26 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
 
   depends_on = [aws_config_configuration_recorder.foo]
 }
+
+### Lambda ###
+resource "aws_config_config_rule" "lambda" {
+  name = "CustomLambdaCloudTrail"
+
+  scope {
+    compliance_resource_types = ["AWS::CloudTrail::Trail"]
+  }
+
+  source {
+    owner             = "CUSTOM_LAMBDA"
+    source_identifier = var.lambda_arn
+
+    source_detail {
+      event_source = "aws.config"
+      message_type = "ConfigurationItemChangeNotification"
+    }
+  }
+
+  depends_on = [
+    aws_config_configuration_recorder.foo
+  ]
+}
