@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: trail-app
+
+Globals:
+  Function:
+    Timeout: 5
+    MemorySize: 128
+
+Resources:
+  CloudTrailFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: main
+      Runtime: go1.x
+      Architectures:
+        - x86_64
+      # Events:
+      #   CatchAll:
+      #     Type: Api
+      #     Properties:
+      #       Path: /hello
+      #       Method: GET
+      # Environment:
+      #   Variables:
+      #     PARAM1: VALUE
