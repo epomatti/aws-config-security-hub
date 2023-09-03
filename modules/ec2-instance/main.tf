@@ -40,14 +40,14 @@ resource "aws_instance" "box" {
   }
 
   tags = {
-    Name = "${local.affix}-nat"
+    Name = "${local.affix}"
   }
 }
 
 ### IAM Role ###
 
 resource "aws_iam_role" "box" {
-  name = "${local.affix}-nat"
+  name = "${local.affix}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -74,12 +74,12 @@ resource "aws_iam_role_policy_attachment" "box" {
 }
 
 resource "aws_security_group" "box" {
-  name        = "ec2-ssm-${local.affix}-nat"
+  name        = "ec2-ssm-${local.affix}"
   description = "Controls access for EC2 via Session Manager"
   vpc_id      = var.vpc_id
 
   tags = {
-    Name = "sg-ssm-${local.affix}-nat"
+    Name = "sg-ssm-${local.affix}"
   }
 }
 
