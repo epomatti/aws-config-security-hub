@@ -1,13 +1,18 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
+      version = "5.17.0"
     }
   }
 }
 
 provider "aws" {
   region = var.region
+}
+
+module "ebs" {
+  source = "./modules/ebs"
 }
 
 module "dyndb" {
@@ -57,6 +62,7 @@ module "config" {
     module.vpc,
     module.ec2-instance,
     module.s3,
-    module.cloudtrail
+    module.cloudtrail,
+    module.ebs
   ]
 }

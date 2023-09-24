@@ -130,6 +130,17 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
   depends_on = [aws_config_configuration_recorder.foo]
 }
 
+resource "aws_config_config_rule" "encrypted_volumes" {
+  name = "encrypted-volumes"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "ENCRYPTED_VOLUMES"
+  }
+
+  depends_on = [aws_config_configuration_recorder.foo]
+}
+
 ### Lambda ###
 resource "aws_config_config_rule" "lambda" {
   name = "CustomLambdaCloudTrail"

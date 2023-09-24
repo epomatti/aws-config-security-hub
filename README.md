@@ -2,9 +2,9 @@
 
 Using AWS Config rules and getting insights with AWS Security Hub.
 
-<img src=".assets/diagram.png" width=600/>
+<img src=".assets/config-sec-diagram.png" width=700/>
 
-Additionally, the code provide a custom rule with Lambda to detect and remediate changes to CloudTrail (or other resources):
+Additionally, the code provides a custom rule with Lambda to detect and remediate changes to CloudTrail (or other resources):
 
 <img src=".assets/cloudtrail.png" width=600/>
 
