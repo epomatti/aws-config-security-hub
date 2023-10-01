@@ -52,9 +52,15 @@ module "lambda" {
   source = "./modules/lambda"
 }
 
+module "sns" {
+  source                = "./modules/sns"
+  sns_email_destination = var.sns_email_destination
+}
+
 module "config" {
   source     = "./modules/config"
   lambda_arn = module.lambda.arn
+  topic_arn  = module.sns.topic_arn
 
   # Waits on all modules to get the configuration on creation
   depends_on = [

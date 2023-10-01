@@ -141,6 +141,64 @@ resource "aws_config_config_rule" "encrypted_volumes" {
   depends_on = [aws_config_configuration_recorder.foo]
 }
 
+### Rule with remediation ####
+
+resource "aws_config_config_rule" "s3_default_encryption_kms" {
+  name = "s3-default-encryption-kms"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "S3_DEFAULT_ENCRYPTION_KMS"
+  }
+
+  depends_on = [aws_config_configuration_recorder.foo]
+}
+
+resource "aws_config_remediation_configuration" "s3_default_encryption_kms" {
+  config_rule_name = aws_config_config_rule.s3_default_encryption_kms.name
+  # resource_type    = "AWS::S3::Bucket"
+  target_type    = "SSM_DOCUMENT"
+  target_id      = "AWS-PublishSNSNotification"
+  target_version = "1"
+
+
+  parameter {
+    name         = "AutomationAssumeRole"
+    static_value = "arn:aws:iam::875924563244:role/security_config"
+  }
+
+  # parameter {
+  #   name           = "BucketName"
+  #   resource_value = "RESOURCE_ID"
+  # }
+
+  parameter {
+    name         = "SSEAlgorithm"
+    static_value = "AES256"
+  }
+
+  # parameter {
+  #   name         = "RESOURCE_iD"
+  #   static_value = var.topic_arn
+  # }
+
+  parameter {
+    name           = "TopicArn"
+    resource_value = "RESOURCE_ID"
+  }
+
+  automatic                  = true
+  maximum_automatic_attempts = 10
+  retry_attempt_seconds      = 600
+
+  execution_controls {
+    ssm_controls {
+      concurrent_execution_rate_percentage = 25
+      error_percentage                     = 20
+    }
+  }
+}
+
 ### Lambda ###
 resource "aws_config_config_rule" "lambda" {
   name = "CustomLambdaCloudTrail"

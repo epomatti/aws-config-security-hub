@@ -2,11 +2,14 @@
 
 Using AWS Config rules and getting insights with AWS Security Hub.
 
-<img src=".assets/config-sec-diagram.png" width=700/>
+## Setup
 
-Additionally, the code provides a custom rule with Lambda to detect and remediate changes to CloudTrail (or other resources):
+Set the SNS email receiver in a `.auto.tfvars` file:
 
-<img src=".assets/cloudtrail.png" width=600/>
+```terraform
+# Enable your email after apply (check your spam)
+sns_email_destination = "joe@example.com"
+```
 
 Create the resources:
 
@@ -15,23 +18,29 @@ terraform init
 terraform apply -auto-approve
 ```
 
-👉 Using the Console, enable Security Hub manually.
+## Architecture
 
-Give it some time for scanning and check AWS Config:
+Services and integrations implemented.
 
-<img src=".assets/config.png" />
+**👉 Enable Security Hub manually using the Console.**
+
+<img src=".assets/config-sec-diagram.png" width=650/>
+
+The ode provides a custom rule with Lambda to detect and remediate changes to CloudTrail (or other resources):
+
+<img src=".assets/cloudtrail.png" width=600/>
+
+
+
+## AWS Config
+
+After a short time, Config will display the findings:
+
+<img src=".assets/config.png" width=400/>
 
 Make changes to a resource such as the EC2 instance, and check the timeline:
 
 <img src=".assets/ec2-timeline.png" />
-
-If you enabled Security Hub, check the security posture:
-
-<img src=".assets/sechub.png" />
-
-Security Hub can integrate with several other AWS services:
-
-<img src=".assets/integrations.png" width=500/>
 
 Global recording is enabled ([ref1][1], [ref2][2]):
 
@@ -39,9 +48,24 @@ Global recording is enabled ([ref1][1], [ref2][2]):
 
 > Now, you can record changes to the configuration of your IAM Users, Groups, and Roles, including inline policies associated with them. You can also record attachments of your managed (customer-managed) policies and changes made to them.
 
-As well as with other resources, it is possible to track the resource timeline::
+As well as with other resources, it is possible to track the resource timeline:
 
 <img src=".assets/iam-timeline.png" />
+
+
+
+## Security Hub
+
+If you enabled Security Hub, it will sync up with AWS Config data.
+
+Check the security posture:
+
+<img src=".assets/sechub.png" />
+
+Security Hub can integrate with several other AWS services:
+
+<img src=".assets/integrations.png" width=500/>
+
 
 ## CloudTrail
 
